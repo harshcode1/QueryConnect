@@ -1,59 +1,42 @@
-# ProductCommunityFrontend
+# QueryConnect – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+QueryConnect is a modern, community-driven Q&A platform where users can post questions, search for answers, and engage with other community members.
 
-## Development server
+This repository contains the **frontend** code for the platform, built using **[React.js / Next.js]** and styled with **Tailwind CSS**. The application interfaces with a Spring Boot backend to fetch and display user-generated content dynamically.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🔗 Backend Repository
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+You can find the backend code for this project here:  
+👉 [QueryConnect – Backend](https://github.com/harshcode1/QueryConnect-Backend)
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Features
 
-```bash
-ng generate component component-name
-```
+- User-friendly and responsive UI
+- Ask, view, and manage questions
+- View answers, comments, and user profiles
+- Search functionality with keyword matching
+- Community stats and recent activity highlights
+- Seamless integration with REST APIs
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🛠️ Tech Stack
 
-## Building
+- **Framework**: [React.js / Next.js]
+- **Styling**: Tailwind CSS
+- **Routing**: React Router / Next.js routing
+- **API Integration**: Axios / Fetch
+- **State Management**: useState, useEffect (or Redux if used)
 
-To build the project run:
+---
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📦 Installation
 
 ```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+git clone https://github.com/harshcode1/QueryConnect-Frontend.git
+cd QueryConnect-Frontend
+npm install

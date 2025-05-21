@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card shadow animate-fadeInUp">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Login</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- Error Alert -->
+            <div *ngIf="loginError" class="alert alert-danger">
+              {{ loginError }}
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Enter your email"
+              />
+              <div *ngIf="submitted && email?.invalid" class="text-danger small">
+                <div *ngIf="email?.errors?.['required']">Email is required.</div>
+                <div *ngIf="email?.errors?.['email']">Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Enter your password"
+              />
+              <div *ngIf="submitted && password?.invalid" class="text-danger small">
+                Password is required.
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="loginForm.invalid"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+
+          <!-- Register Link -->
+          <div class="text-center mt-3">
+            <p>
+              Don't have an account?
+              <a routerLink="/register">Register here</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

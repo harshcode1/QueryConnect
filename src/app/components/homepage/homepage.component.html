@@ -1,0 +1,150 @@
+<div class="home-container min-vh-100">
+  <!-- Header Banner -->
+  <div class="header-banner">
+    <!-- User Welcome Section -->
+    <div class="user-welcome d-flex align-items-center justify-content-between flex-wrap mb-4">
+      <div class="d-flex align-items-center gap-3">
+        <div class="avatar-container">
+          <div class="avatar d-flex align-items-center justify-content-center fw-bold">
+            {{ userInitials }}
+          </div>
+        </div>
+        <span class="fw-bold fs-5 text-white">Welcome, {{ username }}</span>
+      </div>
+      <button class="btn btn-glass px-4 py-2 rounded-pill" (click)="logout()">
+        <i class="bi bi-box-arrow-right me-2"></i>Logout
+      </button>
+    </div>
+
+    <div class="banner-content text-center">
+      <h1 class="community-title">THE COMMUNITY</h1>
+      <p class="banner-subtitle mb-4">
+        Find Solutions, Ask Questions, Share Knowledge.<br />
+        <span class="text-light">Connect with users across the world.</span>
+      </p>
+      <button class="btn-new-topic" (click)="createNewQuestion()">
+        <i class="bi bi-plus-circle me-2"></i> NEW TOPIC
+      </button>
+    </div>
+
+    <!-- Dynamic Community Stats -->
+    <div class="community-stats mt-5">
+      <div class="stats-container d-flex justify-content-around text-center flex-wrap gap-4">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="bi bi-people-fill fs-3"></i>
+          </div>
+          <div class="stat-details">
+            <div class="stat-number fs-4 fw-semibold">{{ communityStats.totalUsers | number }}</div>
+            <div class="stat-label small">Members</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="bi bi-chat-left-text-fill fs-3"></i>
+          </div>
+          <div class="stat-details">
+            <div class="stat-number fs-4 fw-semibold">{{ communityStats.totalQuestions | number }}</div>
+            <div class="stat-label small">Posts</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="bi bi-check-circle-fill fs-3"></i>
+          </div>
+          <div class="stat-details">
+            <div class="stat-number fs-4 fw-semibold">{{ communityStats.totalClosedQuestions | number }}</div>
+            <div class="stat-label small">Closed</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="bi bi-chat-dots-fill fs-3"></i>
+          </div>
+          <div class="stat-details">
+            <div class="stat-number fs-4 fw-semibold">{{ communityStats.totalComments | number }}</div>
+            <div class="stat-label small">Comments</div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Box -->
+  <div class="search-container">
+    <div class="search-box-wrapper">
+      <div class="search-box">
+        <i class="bi bi-search search-icon"></i>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search the Community"
+          [(ngModel)]="searchQuery"
+          (keyup.enter)="searchCommunity()"
+        />
+        <button class="search-btn" (click)="searchCommunity()">Search</button>
+      </div>
+      <button class="btn btn-outline-secondary rounded-pill mt-3" routerLink="/search">
+        <i class="bi bi-card-list me-2"></i> View All Questions
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-container">
+    <!-- My Questions -->
+    <div class="section-card">
+      <div class="section-header">
+        <h2>My Questions</h2>
+        <button class="btn btn-success rounded-pill" routerLink="/ask-question">
+          <i class="bi bi-plus-lg me-2"></i> Ask New Question
+        </button>
+      </div>
+
+      <div class="question-list">
+        <div
+          class="question-item"
+          *ngFor="let question of myQuestions"
+        >
+          <div class="question-item-content">
+            <div class="question-title">
+              <a [routerLink]="['/view-details', question.qid]">
+                {{ question.title }}
+              </a>
+            </div>
+            <div class="question-meta">
+              <span><i class="bi bi-chat-dots"></i> {{ question.replies }} replies</span>
+              <span class="dot-separator"></span>
+              <span><i class="bi bi-calendar3"></i> {{ question.date }}</span>
+            </div>
+          </div>
+          <div class="question-status" [ngClass]="question.status">
+            {{ question.status ? 'Answered' : 'Unanswered' }}
+          </div>
+        </div>
+
+        <div class="view-all" *ngIf="myQuestions.length > 0">
+          <a routerLink="/view-questions">
+            View all my questions <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="empty-state" *ngIf="myQuestions.length === 0">
+          <div class="empty-state-icon">
+            <i class="bi bi-question-circle"></i>
+          </div>
+          <div class="empty-state-text">
+            You haven't asked any questions yet.
+          </div>
+          <button class="btn btn-primary rounded-pill mt-3" routerLink="/ask-question">
+            Ask Your First Question
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

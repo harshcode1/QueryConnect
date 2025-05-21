@@ -1,0 +1,126 @@
+/* your-component.component.css */
+.full-page-background {
+    min-height: 100vh;
+    position: relative;
+    background: linear-gradient(120deg, #f4f6fb 0%, #e0e7ff 100%);
+    overflow: hidden;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    filter: blur(6px) brightness(0.95);
+  }
+  
+  .background-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(122,90,248,0.10);
+    z-index: 2;
+  }
+  
+  .content-container {
+    position: relative;
+    z-index: 3;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    background: rgba(255,255,255,0.96);
+    border-radius: 2rem;
+    box-shadow: 0 8px 32px rgba(122,90,248,0.10);
+    animation: fadeInUp 1s cubic-bezier(.4,2,.3,1) both;
+  }
+  
+  .breadcrumb {
+    color: var(--color-muted);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .ask-form h2 {
+    color: var(--color-primary-dark);
+    font-weight: 900;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-bottom: 0.2rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border-radius: 0.7rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    transition: border 0.3s, box-shadow 0.3s;
+    font-size: 1.05rem;
+    width: 100%;
+    margin-bottom: 0.7rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px #e0e7ff;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .btn-cancel {
+    background: #fff;
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger);
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.7rem 2rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .btn-cancel:hover {
+    background: var(--color-danger);
+    color: #fff;
+  }
+  
+  .btn-submit {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.7rem 2rem;
+    box-shadow: 0 2px 8px rgba(122,90,248,0.08);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  
+  .btn-submit:hover {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    box-shadow: 0 4px 24px rgba(122,90,248,0.18);
+  }
+  
+  .error {
+    color: var(--color-danger);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  @media (max-width: 600px) {
+    .content-container {
+      padding: 1.5rem 0.5rem;
+    }
+    .ask-form h2 {
+      font-size: 1.2rem;
+    }
+  }

@@ -1,0 +1,22 @@
+<div class="question-container animate-fadeInUp">
+  <h2 class="heading">My Submitted Questions</h2>
+
+  <div *ngIf="myQuestions.length === 0" class="no-questions">
+    No questions found.
+  </div>
+
+  <div *ngFor="let question of myQuestions" class="question-card animate-fadeInUp">
+    <h3>
+      <a [routerLink]="['/view-details', question.qid]">{{ question.title }}</a>
+    </h3>
+    <p class="product-code"><strong>Product Code:</strong> {{ question.productCode }}</p>
+    <p class="label"><strong>Label:</strong> {{ question.label }}</p>
+    <p class="content">{{ question.content }}</p>
+    <p class="status">
+      <strong>Status:</strong>
+      <span [ngClass]="{'open': !question.status, 'answered': question.status}">
+        {{ question.status ? 'Answered' : 'Open' }}
+      </span>
+    </p>
+  </div>
+</div>

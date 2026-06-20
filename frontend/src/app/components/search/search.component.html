@@ -1,0 +1,119 @@
+<div class="search-header text-center mb-4 animate-fadeInUp">
+  <h1 class="display-5 fw-bold text-primary">Search Results</h1>
+  <p *ngIf="searchForm.get('query')?.value" class="text-muted fs-5">
+    Showing results for: <strong class="text-dark">"{{ searchForm.get('query')?.value }}"</strong>
+  </p>
+</div>
+
+<div class="search-filters container mb-5 animate-fadeInUp">
+  <form [formGroup]="searchForm" class="search-form">
+    <div class="row g-3 justify-content-center">
+      <!-- Search Input -->
+      <div class="col-md-6">
+        <div class="input-group shadow-sm">
+          <input 
+            type="text" 
+            class="form-control border-primary" 
+            placeholder="Search for questions..." 
+            formControlName="query">
+          <button class="btn btn-primary" type="button" (click)="filterResults()">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="btn btn-outline-secondary" type="button" (click)="resetSearch()">
+            <i class="bi bi-x-circle"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Author Filter -->
+      <div class="col-md-3">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Filter by author" 
+          formControlName="filterAuthor">
+      </div>
+
+      <!-- Date Filter -->
+      <div class="col-md-3">
+        <select class="form-select" formControlName="filterDate">
+          <option value="">All time</option>
+          <option value="today">Today</option>
+          <option value="week">This week</option>
+          <option value="month">This month</option>
+          <option value="year">This year</option>
+        </select>
+      </div>
+
+      <!-- Additional Filters -->
+      <div class="col-md-6">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Filter by product code" 
+          formControlName="filterProduct">
+      </div>
+
+      <div class="col-md-6">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Filter by tag" 
+          formControlName="filterTag">
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="text-center my-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Search Results -->
+<div class="container search-results" *ngIf="!isLoading">
+  <div *ngIf="results.length === 0" class="text-center text-muted my-5">
+    <p class="fs-5">No matching results found</p>
+    <p>Try using different keywords or 
+      <a (click)="resetSearch()" class="text-decoration-underline cursor-pointer">browse all questions</a>.
+    </p>
+  </div>
+
+  <!-- Result Items -->
+  <div *ngFor="let result of results" class="result-item mb-4 animate-fadeInUp">
+    <div class="result-title mb-2">
+      <a 
+        [routerLink]="['/view-details', result.qid || result.id || result._id]" 
+        class="h5 fw-bold text-decoration-none">
+        {{ result.title }}
+      </a>
+    </div>
+
+    <div class="result-content mb-3">
+      <p class="mb-0">{{ result.content.substring(0, 200) }}{{ result.content.length > 200 ? '...' : '' }}</p>
+    </div>
+
+    <div class="result-meta d-flex flex-wrap justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-3">
+        <span><i class="bi bi-person"></i> {{ result.username || result.author || 'Anonymous' }}</span>
+        <span><i class="bi bi-calendar3"></i> {{ result.datePosted || result.date || 'N/A' }}</span>
+        <span *ngIf="result.productCode"><i class="bi bi-box"></i> {{ result.productCode }}</span>
+      </div>
+      <div class="stats d-flex align-items-center gap-3">
+        <span><i class="bi bi-chat"></i> {{ result.replies || 0 }} replies</span>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags mt-3 d-flex flex-wrap gap-2">
+      <span 
+        *ngFor="let tag of result.tags"
+        class="badge"
+        (click)="filterByTag(tag)">
+        {{ tag }}
+      </span>
+    </div>
+  </div>
+</div>
